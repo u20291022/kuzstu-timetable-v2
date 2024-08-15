@@ -25,7 +25,6 @@
 } 
 .color-box[current-color="true"] p {
   font-weight: 500;
-  transition: 0;
 }
 
 .info-text {
