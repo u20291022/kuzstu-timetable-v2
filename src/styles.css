@@ -21,6 +21,7 @@
 }
 
 :root {
+  --current-theme: light;
   --accent-color: #E0EBFF;
   --active-color: #9ABDFF;
   --background-color: #FFF;
@@ -35,6 +36,12 @@
   border: none;
   background: none;
   box-sizing: border-box;
+
+  transition: 0.3s;
+}
+
+body {
+  background-color: var(--background-color);
 }
 
 .medium-font {

@@ -5,6 +5,7 @@
   padding: 9px 12px;
   margin-bottom: 12px;
   background-color: var(--accent-color);
+  user-select: none;
 }
 
 .header-text-block {
@@ -36,8 +37,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  border-radius: 6px;
 }
 .header-button:hover {
   background-color: var(--active-color);
-  border-radius: 6px;
 }

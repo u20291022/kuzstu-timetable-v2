@@ -1,0 +1,33 @@
+.colors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: max-content;
+  padding: 0px 5px;
+  user-select: none;
+}
+
+.color-box,
+.color-box * {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.color-box {
+  font-size: 16px;
+  width: 100%;
+  padding: 6px 50px;
+  gap: 16px;
+  color: var(--text-color);
+  cursor: pointer;
+} 
+.color-box[current-color="true"] p {
+  font-weight: 500;
+  transition: 0;
+}
+
+.info-text {
+  color: var(--text-color);
+}

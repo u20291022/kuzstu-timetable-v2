@@ -3,6 +3,7 @@ import { HeaderComponent } from './features/header/header.component';
 import { SearchComponent } from "./features/search/search.component";
 import { WeekdaysComponent } from "./features/weekdays/weekdays.component";
 import { PopupComponent } from './features/popup/popup.component';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -16,4 +17,6 @@ import { PopupComponent } from './features/popup/popup.component';
   `,
   styles: [],
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private themeService: ThemeService) {}
+}

@@ -1,4 +1,5 @@
-<section class="popup">
+<section class="popup" *ngIf="isShowingPopup()">
   <app-calendar *ngIf="isCalendarPopup()"></app-calendar>
   <app-menu *ngIf="isMenuPopup()"></app-menu>
+  <app-colors *ngIf="isColorsPopup()"></app-colors>
 </section>

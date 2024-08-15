@@ -1,0 +1,10 @@
+<section class="colors">
+  <p class="medium-font info-text">Выбор основного цвета</p>
+  <div class="color-box"
+  [attr.current-color]="colorName === getCurrentColorName()"
+  *ngFor="let colorName of getColorsNames()"
+  (click)="setColor(colorName)">
+    <p class="medium-font">{{colorName}}</p>
+    <app-color-circle [color]="colorName"></app-color-circle>
+  </div>
+</section>

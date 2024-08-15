@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Color, Colors } from '../../models/colors.model';
+import { ColorName } from '../../enums/color-name.enum';
+import { ColorsService } from '../../../core/services/colors.service';
 
 @Component({
   selector: 'app-color-circle',
@@ -9,13 +11,12 @@ import { Color, Colors } from '../../models/colors.model';
   styles: ``
 })
 export class ColorCircleComponent {
-  private colors: Colors = { // TODO: move to service
-    "Голубой": { accent: "#E0EBFF", active: "#9ABDFF" }
-  }
+  @Input() color: string = ColorName.BLUE;
 
-  @Input() color: string = 'Голубой';
+  constructor(private colorsService: ColorsService) {}
 
-  public getColor(color: string): Color {
-    return this.colors[color];
+  public getCurrentColor(): Color {
+    const currentColor = this.colorsService.getColorWithThemes(this.color as ColorName);
+    return currentColor.light; // only light cuz with dark mode colors circle looks ugly
   }
 }

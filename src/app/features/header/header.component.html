@@ -5,7 +5,11 @@
   </div>
 
   <div class="header-button-block">
-    <button class="header-button"><app-calendar-svg></app-calendar-svg></button>
-    <button class="header-button"><app-menu-svg></app-menu-svg></button>
+    <button class="header-button" (click)="showCalendar()">
+      <app-calendar-svg></app-calendar-svg>
+    </button>
+    <button class="header-button" (click)="showMenu()">
+      <app-menu-svg></app-menu-svg>
+    </button>
   </div>
 </header>

@@ -3,30 +3,32 @@ import { CalendarComponent } from "./calendar/calendar.component";
 import { PopupState } from '../../shared/enums/popup-state.enum';
 import { MenuComponent } from "./menu/menu.component";
 import { NgIf } from '@angular/common';
+import { ColorsComponent } from "./colors/colors.component";
+import { PopupService } from '../../core/services/popup.service';
 
 @Component({
   selector: 'app-popup',
   standalone: true,
-  imports: [NgIf, CalendarComponent, MenuComponent],
+  imports: [NgIf, CalendarComponent, MenuComponent, ColorsComponent],
   templateUrl: './popup.component.html',
   styleUrl: './popup.component.css'
 })
 export class PopupComponent {
-  private popupState: PopupState = PopupState.MENU; // TODO: move to service
+  constructor(private popupService: PopupService) {}
+
+  public isShowingPopup(): boolean {
+    return this.popupService.isShowingPopup();
+  }
 
   public isCalendarPopup(): boolean {
-    return this.popupState === PopupState.CALENDAR;
+    return this.popupService.isCalendarPopup();
   }
 
   public isMenuPopup(): boolean {
-    return this.popupState === PopupState.MENU;
+    return this.popupService.isMenuPopup();
   }
 
   public isColorsPopup(): boolean {
-    return this.popupState === PopupState.COLORS;
-  }
-
-  public isGroupOrTeacherSelectionPopup(): boolean {
-    return this.popupState === PopupState.GROUP_OR_TEACHER_SELECTION;
+    return this.popupService.isColorsPopup();
   }
 }
