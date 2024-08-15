@@ -1,0 +1,32 @@
+.weekdays {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+.weekday {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  width: 41px;
+  height: 41px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+  background-color: var(--accent-color);
+  cursor: pointer;
+}
+.weekday[current="true"]:not([selected="true"]) {
+  border: 1px solid var(--active-color);
+  color: var(--active-color);
+  background-color: var(--background-color);
+}
+.weekday[selected="true"] {
+  border: 1px solid var(--active-color);
+  color: var(--background-color);
+  background-color: var(--active-color);
+}

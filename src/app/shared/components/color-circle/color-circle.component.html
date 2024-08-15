@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 20 21" fill="none">
+  <circle cx="10" cy="10.5" r="10" [attr.fill]="'url(#gradient_'+color+')'"/>
+  <defs>
+    <linearGradient id="gradient_{{color}}" x1="0.625" y1="4.25" x2="20.625" y2="19.875" gradientUnits="userSpaceOnUse">
+      <stop [attr.stop-color]="getColor(color).active"/>
+      <stop offset="1" [attr.stop-color]="getColor(color).accent"/>
+    </linearGradient>
+  </defs>
+</svg>

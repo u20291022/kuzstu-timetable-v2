@@ -1,0 +1,16 @@
+.popup {
+  position: absolute;
+  top: 67px;
+  left: 50%;
+  transform: translate(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid var(--active-color);
+  background: rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(15px);
+}

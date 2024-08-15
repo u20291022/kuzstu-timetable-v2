@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('../public/fonts/gothampro.ttf');
+}
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('../public/fonts/gothampro_bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('../public/fonts/gothampro_medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('../public/fonts/gothampro_light.ttf');
+  font-weight: 300;
+}
+
+:root {
+  --accent-color: #E0EBFF;
+  --active-color: #9ABDFF;
+  --background-color: #FFF;
+  --text-color: #000;
+}
+
+* {
+  /* override default styles */
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  background: none;
+  box-sizing: border-box;
+}
+
+.medium-font {
+  font-family: "Gotham Pro";
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.big-font {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

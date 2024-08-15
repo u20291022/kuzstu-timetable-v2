@@ -1,0 +1,87 @@
+.calendar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  user-select: none;
+}
+
+.calendar-month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+}
+
+.calendar-month-control,
+.calendar-month-control * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+.calendar-month-text {
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+/* second */
+.weekdays {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.weekday-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  color: var(--text-color);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* third */
+.month-weeks {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.month-week {
+  display: flex;
+  gap: 5px;
+  color: var(--text-color);
+  font-size: 13px;
+}
+
+.month-day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.month-day:hover {
+  background-color: var(--accent-color);
+}
+.month-day[current="true"]:not([selected="true"]) {
+  color: var(--active-color);
+  border-color: var(--active-color);
+}
+.month-day[selected="true"] {
+  color: var(--background-color);
+  background-color: var(--active-color);
+}
+.month-day[in-other-month="true"] {
+  color: #B0B0B0;
+}

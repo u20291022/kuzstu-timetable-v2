@@ -1,0 +1,23 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  gap: 12px;
+  user-select: none;
+}
+
+.menu-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0px;
+  color: var(--text-color);
+  font-size: 16px;
+  cursor: pointer;
+}
+.menu-option * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

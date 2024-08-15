@@ -1,0 +1,15 @@
+<section class="menu">
+  <div class="menu-option">
+    <p class="medium-font">Преподаватель/Группа</p>
+    <app-group-svg></app-group-svg>
+  </div>
+  <div class="menu-option">
+    <p class="medium-font">Основной цвет</p>
+    <app-color-circle [color]="currentColor"></app-color-circle>
+  </div>
+  <div class="menu-option">
+    <p class="medium-font">Тема</p>
+    <app-moon-svg *ngIf="currentTheme==='light'"></app-moon-svg>
+    <app-sun-svg *ngIf="currentTheme==='dark'"></app-sun-svg>
+  </div>
+</section>
