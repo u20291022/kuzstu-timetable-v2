@@ -39,7 +39,17 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  max-height: 100svh;
   background-color: var(--background-color);
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
 }
 
 .medium-font {

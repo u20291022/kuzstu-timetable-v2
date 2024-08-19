@@ -15,6 +15,14 @@ export class HeaderComponent {
 
   constructor(private popupService: PopupService) {}
 
+  public isShowingCalendar(): boolean {
+    return this.popupService.isShowingPopup() && this.popupService.isCalendarPopup();
+  }
+
+  public isShowingMenu(): boolean {
+    return this.popupService.isShowingPopup() && this.popupService.isMenuPopup();
+  }
+
   public showCalendar(): void {
     this.popupService.toggleCalendarPopup();
   }

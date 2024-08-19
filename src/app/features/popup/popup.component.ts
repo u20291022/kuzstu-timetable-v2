@@ -5,11 +5,12 @@ import { MenuComponent } from "./menu/menu.component";
 import { NgIf } from '@angular/common';
 import { ColorsComponent } from "./colors/colors.component";
 import { PopupService } from '../../core/services/popup.service';
+import { GroupAndTeacherComponent } from "./group-and-teacher/group-and-teacher.component";
 
 @Component({
   selector: 'app-popup',
   standalone: true,
-  imports: [NgIf, CalendarComponent, MenuComponent, ColorsComponent],
+  imports: [NgIf, CalendarComponent, MenuComponent, ColorsComponent, GroupAndTeacherComponent],
   templateUrl: './popup.component.html',
   styleUrl: './popup.component.css'
 })
@@ -30,5 +31,9 @@ export class PopupComponent {
 
   public isColorsPopup(): boolean {
     return this.popupService.isColorsPopup();
+  }
+
+  public isGroupAndTeacherPopup(): boolean {
+    return this.popupService.isGroupOrTeacherSelectionPopup();
   }
 }

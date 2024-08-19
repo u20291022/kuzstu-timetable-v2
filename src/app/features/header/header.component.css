@@ -42,3 +42,6 @@
 .header-button:hover {
   background-color: var(--active-color);
 }
+.header-button[toggled="true"] {
+  background-color: var(--active-color);
+}

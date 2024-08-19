@@ -5,10 +5,10 @@
   </div>
 
   <div class="header-button-block">
-    <button class="header-button" (click)="showCalendar()">
+    <button class="header-button" [attr.toggled]="isShowingCalendar()" (click)="showCalendar()">
       <app-calendar-svg></app-calendar-svg>
     </button>
-    <button class="header-button" (click)="showMenu()">
+    <button class="header-button" [attr.toggled]="isShowingMenu()" (click)="showMenu()">
       <app-menu-svg></app-menu-svg>
     </button>
   </div>

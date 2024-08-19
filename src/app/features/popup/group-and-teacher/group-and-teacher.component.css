@@ -1,0 +1,67 @@
+.group-and-teacher {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  user-select: none;
+}
+
+.group-and-teacher-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-color);
+  font-size: 16px;
+}
+.group-and-teacher-text * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.group-and-teacher-search {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.group-and-teacher-search-input {
+  height: 27px;
+  padding: 7px 8px;
+  flex-shrink: 0;
+  width: 100%;
+  border-radius: 6px;
+  background: var(--accent-color);
+  caret-color: var(--active-color);
+  color: var(--text-color);
+}
+
+.search-icon {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+}
+
+.group-and-teacher-search-results {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
+  scrollbar-color: var(--accent-color) var(--background-color);
+}
+.group-and-teacher-search-results p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 100%;
+  padding: 8px 0px;
+  color: var(--text-color);
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}

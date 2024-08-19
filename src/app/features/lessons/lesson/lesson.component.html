@@ -1,0 +1,23 @@
+<div class="lesson">
+  <div class="lesson-number-and-time">
+    <p class="medium-font lesson-number">{{lesson.lessonNumber}}</p>
+    <p class="medium-font lesson-time"><b>{{lesson.lessonTime.start}}</b>-{{lesson.lessonTime.end}}</p>
+  </div>
+
+  <div class="medium-font lesson-subgroups">
+    <div class="lesson-subgroup" *ngFor="let subgroup of lesson.subgroups; let index as i">
+      <div class="lesson-subgroup-name">{{subgroup.name}}</div>
+      <div class="lesson-subgroup-info">
+        <p class="lesson-subgroup-lesson-name">{{subgroup.lessonName}}</p>
+        <div class="text-with-icon">
+          <app-person-svg></app-person-svg>
+          <p>{{subgroup.teacher}}</p>
+        </div>
+        <div class="text-with-icon">
+          <app-location-svg></app-location-svg>
+          <p>{{subgroup.classroom}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

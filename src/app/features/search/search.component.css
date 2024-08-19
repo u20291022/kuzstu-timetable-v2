@@ -26,6 +26,9 @@
 .search-input {
   position: relative;
   caret-color: var(--active-color);
+  color: var(--text-color);
+  font-size: 16px;
+  font-weight: 300;
 }
 .search-input::placeholder {
   text-align: center;

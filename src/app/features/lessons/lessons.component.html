@@ -1,0 +1,5 @@
+<section class="lessons">
+  @if (lessons.length > 0) {
+    <app-lesson *ngFor="let lesson of lessons; let index as i" [lesson]="lesson"></app-lesson>
+  }
+</section>
