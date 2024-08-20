@@ -5,11 +5,11 @@
   </div>
 
   <div class="group-and-teacher-search">
-    <input type="search" class="medium-font group-and-teacher-search-input">
+    <input type="search" class="medium-font group-and-teacher-search-input" (input)="onSearchInput($event)">
     <app-search-svg class="search-icon"></app-search-svg>
   </div>
 
   <div class="medium-font group-and-teacher-search-results" *ngIf="showingResults">
-    <p *ngFor="let result of results; let index as i" (click)="selectResult(result.id)">{{result.name}}</p>
+    <p *ngFor="let result of results | search:textToSearch | alphabetSort; let index as i" (click)="selectResult(result.id)">{{result.name}}</p>
   </div>
 </section>
