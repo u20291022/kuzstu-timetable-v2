@@ -65,3 +65,6 @@
   font-size: 16px;
   cursor: pointer;
 }
+.group-and-teacher-search-results p:hover {
+  color: var(--active-color);
+}

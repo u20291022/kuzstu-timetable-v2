@@ -10,12 +10,6 @@
   </div>
 
   <div class="medium-font group-and-teacher-search-results" *ngIf="showingResults">
-    <p>hello world</p>
-    <p>hello world</p>
-    <p>hello world</p>
-    <p>hello world</p>
-    <p>hello world</p>
-    <p>hello world</p>
-    <p>hello world</p>
+    <p *ngFor="let result of results; let index as i" (click)="selectResult(result.id)">{{result.name}}</p>
   </div>
 </section>

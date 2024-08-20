@@ -20,7 +20,11 @@ export class HeaderComponent {
   }
 
   public isShowingMenu(): boolean {
-    return this.popupService.isShowingPopup() && this.popupService.isMenuPopup();
+    return this.popupService.isShowingPopup() && (
+      this.popupService.isMenuPopup()
+      || this.popupService.isColorsPopup()
+      || this.popupService.isGroupOrTeacherSelectionPopup()
+    );
   }
 
   public showCalendar(): void {

@@ -6,8 +6,8 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class PopupService {
-  private showingPopop: boolean = true;
-  private popupState: PopupState = PopupState.GROUP_OR_TEACHER_SELECTION;
+  private showingPopop: boolean = false;
+  private popupState: PopupState = PopupState.MENU;
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     this.document.addEventListener('click', (event) => {
