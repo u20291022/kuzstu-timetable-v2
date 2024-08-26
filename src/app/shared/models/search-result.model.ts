@@ -1,7 +1,7 @@
 import { TimetableType } from "../enums/timetable-type.enum";
 
-export type GroupOrTeacher = {
+export type SearchResult = {
   name: string;
   id: string;
-  type: TimetableType.GROUP | TimetableType.TEACHER;
+  type: TimetableType;
 };

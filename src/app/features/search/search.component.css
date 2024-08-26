@@ -52,15 +52,12 @@
 }
 
 .search-results {
-  display: none;
+  display: block;
   padding-top: 2px;
   max-height: 300px;
   overflow-y: scroll;
   scrollbar-color: var(--accent-color) var(--background-color);
-}
-.search-input:focus ~ .search-results,
-.search-results:hover {
-  display: block;
+  user-select: none;
 }
 
 .search-result {

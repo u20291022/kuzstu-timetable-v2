@@ -2,13 +2,21 @@
   <app-star-svg></app-star-svg>
   <div class="search-relative-box">
     <div class="search-box">
-      <input type="search" class="medium-font search-input" placeholder="ИТб-222" />
+      <input type="search" class="medium-font search-input"
+      [placeholder]="getPlaceholder() | slice:0:20"
+      (input)="onInput($event)" (focus)="onFocus()" />
       <app-search-svg class="search-icon"></app-search-svg>
-      <div class="search-results">
-        <p class="big-font search-result">Расписание группы</p>
-        <p class="big-font search-result">Расписание преподавателя</p>
-        <p class="big-font search-result">Расписание аудитории</p>
-        <p class="big-font search-result">Расписание экзаменов</p>
+      <div class="search-results" *ngIf="isShowingResults()">
+        @if (isLoadingResults()) {
+          <app-loading></app-loading>
+        }
+        @else {
+          <p class="big-font search-result"
+          *ngFor="let result of getResults() | search:getTextToSearch() | alphabetSort:isShouldSort()"
+          (click)="selectResult(result)">
+            {{result.name}}
+          </p>
+        }
       </div>
     </div>
   </div>

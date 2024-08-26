@@ -69,7 +69,7 @@ export class PopupService {
     this.showPopup();
   }
 
-  private hidePopup(): void {
+  public hidePopup(): void {
     this.showingPopop = false;
   }
 

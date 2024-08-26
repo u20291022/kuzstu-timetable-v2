@@ -44,6 +44,10 @@ export class ColorsService {
     return Object.keys(this.colors);
   }
 
+  public getCurrentColorIndex(): number {
+    return this.getColorsNames().indexOf(this.currentColorName);
+  }
+
   public setColor(colorName: ColorName): void {
     this.currentColorName = colorName;
     localStorage.setItem('currentColor', colorName);
