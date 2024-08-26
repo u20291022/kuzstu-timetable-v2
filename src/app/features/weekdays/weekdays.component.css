@@ -21,7 +21,7 @@
   background-color: var(--accent-color);
   cursor: pointer;
 }
-.weekday[current="true"]:not([selected="true"]) {
+.weekday[today="true"]:not([selected="true"]) {
   border: 1px solid var(--active-color);
   color: var(--active-color);
   background-color: var(--background-color);

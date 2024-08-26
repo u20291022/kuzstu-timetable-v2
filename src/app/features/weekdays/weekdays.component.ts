@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { Weekday } from '../../shared/models/weekday.model';
+import { CalendarService } from '../../core/services/calendar.service';
 
 @Component({
   selector: 'app-weekdays',
@@ -10,25 +11,17 @@ import { Weekday } from '../../shared/models/weekday.model';
   styleUrl: './weekdays.component.css'
 })
 export class WeekdaysComponent {
-  private weekdaysShortNames = [ // TODO: move to calendar service
-    'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'
-  ]
-
-  public weekdays: Weekday[] = [
-    { num: 2, isSelected: false, isCurrent: true, monthNumber: 9 },
-    { num: 3, isSelected: false, isCurrent: false, monthNumber: 9 },
-    { num: 4, isSelected: false, isCurrent: false, monthNumber: 9 },
-    { num: 5, isSelected: false, isCurrent: false, monthNumber: 9 },
-    { num: 6, isSelected: false, isCurrent: false, monthNumber: 9 },
-    { num: 7, isSelected: false, isCurrent: false, monthNumber: 9 },
-    { num: 8, isSelected: true, isCurrent: false, monthNumber: 9 },
-  ];
+  constructor(private calendarService: CalendarService) {}
 
   public getWeekdays(): Weekday[] {
-    return this.weekdays;
+    return this.calendarService.getCurrentWeek();
   }
 
   public getWeekdayShortName(dayIndex: number): string {
-    return (dayIndex >= 0 && dayIndex <= 6) ? this.weekdaysShortNames[dayIndex] : '?';
+    return this.calendarService.getWeekdayShortName(dayIndex);
+  }
+
+  public setCurrentWeekdayTo(weekday: Weekday): void {
+    this.calendarService.setCurrentWeekdayTo(weekday);
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CalendarSvgComponent } from "../../shared/components/calendar-svg/calendar-svg.component";
 import { MenuSvgComponent } from "../../shared/components/menu-svg/menu-svg.component";
 import { PopupService } from '../../core/services/popup.service';
+import { CalendarService } from '../../core/services/calendar.service';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,11 @@ import { PopupService } from '../../core/services/popup.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  public dateString = '2 сентября, нечётная неделя'; // TODO: move to service
+  constructor(private popupService: PopupService, private calendarService: CalendarService) {}
 
-  constructor(private popupService: PopupService) {}
+  public getDateString(): string {
+    return this.calendarService.getHeaderString();
+  }
 
   public isShowingCalendar(): boolean {
     return this.popupService.isShowingPopup() && this.popupService.isCalendarPopup();

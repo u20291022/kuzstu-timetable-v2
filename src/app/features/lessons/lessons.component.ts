@@ -4,6 +4,7 @@ import { Lesson } from '../../shared/models/lesson.model';
 import { NgFor, NgIf } from '@angular/common';
 import { LoadingComponent } from "../../shared/components/loading/loading.component";
 import { ImagesService } from '../../core/services/images.service';
+import { LessonsService } from '../../core/services/lessons.service';
 
 @Component({
   selector: 'app-lessons',
@@ -13,17 +14,20 @@ import { ImagesService } from '../../core/services/images.service';
   styleUrl: './lessons.component.css'
 })
 export class LessonsComponent {
-  private loadingLessons = false;
-
-  constructor(private imagesService: ImagesService) {}
+  constructor(private imagesService: ImagesService, private lessonsService: LessonsService) {}
 
   public isLoadingLessons(): boolean {
-    return this.loadingLessons;
+    return this.lessonsService.isLoadingLessons();
   }
 
   public isCatImageLoaded(): boolean {
     return this.imagesService.isCatImageLoaded();
   }
+
+  public getLessons(): Lesson[] {
+    return this.lessonsService.getLessons();
+  }
+
 
   public getCurrentCatImageUrl(): string {
     return this.imagesService.getCurrentCatImageUrl();
@@ -32,97 +36,4 @@ export class LessonsComponent {
   public onCatImageLoad(): void {
     this.imagesService.setCatImageToLoaded();
   }
-
-  public lessons: Lesson[] = [
-    {
-      "lessonNumber": "1",
-      "lessonTime": {"start": "9:00", "end": "10:30"},
-      "subgroups": [
-        {
-          "name": "1 п/г",
-          "lessonName": "лаб. Теория автоматического управления",
-          "teacher": "Симикова А.А.",
-          "classroom": "Ауд. 3305"
-        },
-        {
-          "name": "2 п/г",
-          "lessonName": "лаб. Теория информационных процессов и систем",
-          "teacher": "Николаев П.И.",
-          "classroom": "Ауд. 3302"
-        }
-      ]
-    },
-    {
-      "lessonNumber": "1",
-      "lessonTime": {"start": "9:00", "end": "10:30"},
-      "subgroups": [
-        {
-          "name": "1 п/г",
-          "lessonName": "лаб. Теория автоматического управления",
-          "teacher": "Симикова А.А.",
-          "classroom": "Ауд. 3305"
-        },
-        {
-          "name": "2 п/г",
-          "lessonName": "лаб. Теория информационных процессов и систем",
-          "teacher": "Николаев П.И.",
-          "classroom": "Ауд. 3302"
-        }
-      ]
-    },
-    {
-      "lessonNumber": "1",
-      "lessonTime": {"start": "9:00", "end": "10:30"},
-      "subgroups": [
-        {
-          "name": "1 п/г",
-          "lessonName": "лаб. Теория автоматического управления",
-          "teacher": "Симикова А.А.",
-          "classroom": "Ауд. 3305"
-        },
-        {
-          "name": "2 п/г",
-          "lessonName": "лаб. Теория информационных процессов и систем",
-          "teacher": "Николаев П.И.",
-          "classroom": "Ауд. 3302"
-        }
-      ]
-    },
-    {
-      "lessonNumber": "1",
-      "lessonTime": {"start": "9:00", "end": "10:30"},
-      "subgroups": [
-        {
-          "name": "1 п/г",
-          "lessonName": "лаб. Теория автоматического управления",
-          "teacher": "Симикова А.А.",
-          "classroom": "Ауд. 3305"
-        },
-        {
-          "name": "2 п/г",
-          "lessonName": "лаб. Теория информационных процессов и систем",
-          "teacher": "Николаев П.И.",
-          "classroom": "Ауд. 3302"
-        }
-      ]
-    },
-    {
-      "lessonNumber": "1",
-      "lessonTime": {"start": "9:00", "end": "10:30"},
-      "subgroups": [
-        {
-          "name": "1 п/г",
-          "lessonName": "лаб. Теория автоматического управления",
-          "teacher": "Симикова А.А.",
-          "classroom": "Ауд. 3305"
-        },
-        {
-          "name": "2 п/г",
-          "lessonName": "лаб. Теория информационных процессов и систем",
-          "teacher": "Николаев П.И.",
-          "classroom": "Ауд. 3302"
-        }
-      ]
-    }
-  ];
 }

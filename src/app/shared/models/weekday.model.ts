@@ -1,6 +1,7 @@
 export type Weekday = {
   num: number;
   isSelected: boolean;
-  isCurrent: boolean;
+  isToday: boolean;
+  inCurrentMonth: boolean;
   monthNumber: number;
 };

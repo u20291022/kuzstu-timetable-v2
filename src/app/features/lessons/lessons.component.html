@@ -1,9 +1,9 @@
-<section class="lessons">
+<section class="lessons" *ngIf="getLessons() as lessons">
   @if (isLoadingLessons()) {
     <app-loading></app-loading>
   }
   @else {
-    @if (lessons.length === 0) {
+    @if (lessons.length > 0) {
       <app-lesson *ngFor="let lesson of lessons; let index as i" [lesson]="lesson"></app-lesson>
     }
     @else {

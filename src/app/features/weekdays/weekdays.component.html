@@ -1,6 +1,8 @@
 <section class="weekdays">
   @for (weekday of getWeekdays(); track $index) {
-    <div class="weekday medium-font" [attr.selected]="weekday.isSelected" [attr.current]="weekday.isCurrent">
+    <div class="weekday medium-font"
+    [attr.selected]="weekday.isSelected" [attr.today]="weekday.isToday"
+    (click)="setCurrentWeekdayTo(weekday)">
       <p>{{weekday.num}}</p>
       <p>{{getWeekdayShortName($index)}}</p>
     </div>

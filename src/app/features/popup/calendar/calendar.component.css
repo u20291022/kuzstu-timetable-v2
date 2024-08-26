@@ -8,7 +8,7 @@
 
 .calendar-month {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 64px;
 }
@@ -74,12 +74,12 @@
 .month-day:hover {
   background-color: var(--accent-color);
 }
-.month-day[current="true"]:not([selected="true"]) {
+.month-day[today="true"]:not([selected="true"]) {
   color: var(--active-color);
   border-color: var(--active-color);
 }
 .month-day[selected="true"] {
-  color: var(--background-color);
+  color: var(--text-color);
   background-color: var(--active-color);
 }
 .month-day[in-other-month="true"] {

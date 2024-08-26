@@ -1,13 +1,17 @@
 <section class="calendar">
   <div class="calendar-month">
-    <button class="calendar-month-control"><app-chevron-svg></app-chevron-svg></button>
-    <p class="medium-font calendar-month-text">{{monthString}}</p>
-    <button class="calendar-month-control rotate180"><app-chevron-svg></app-chevron-svg></button>
+    <button class="calendar-month-control" (click)="setPrevMonth()">
+      <app-chevron-svg></app-chevron-svg>
+    </button>
+    <p class="medium-font calendar-month-text">{{getMonthName()}}</p>
+    <button class="calendar-month-control rotate180" (click)="setNextMonth()">
+      <app-chevron-svg></app-chevron-svg>
+    </button>
   </div>
 
   <div class="weekdays">
-    <p class="big-font weekday-name" *ngFor="let dayIndex of [0, 1, 2, 3, 4, 5, 6]">
-      {{getWeekdayShortName(dayIndex)}}
+    <p class="big-font weekday-name" *ngFor="let weekdayShortName of getWeekdayShortNames()">
+      {{weekdayShortName}}
     </p>
   </div>
 
@@ -15,8 +19,9 @@
     <div class="month-week" *ngFor="let week of getMonthWeeks()">
       @for (day of week; track $index) {
         <p class="medium-font month-day"
-        [attr.in-other-month]="day.monthNumber !== currentMotnNumber"
-        [attr.selected]="day.isSelected" [attr.current]="day.isCurrent">
+        [attr.in-other-month]="!day.inCurrentMonth"
+        [attr.selected]="day.isSelected" [attr.today]="day.isToday"
+        (click)="selectDay(day)">
           {{day.num}}
         </p>
       }
