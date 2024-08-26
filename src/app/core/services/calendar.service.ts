@@ -10,6 +10,7 @@ export class CalendarService {
     'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'
   ]
   private currentDate = new Date();
+  private viewDate = new Date();
 
   public getHeaderString(): string {
     const currentDateString = this.currentDate.toLocaleDateString('ru-RU', { month: 'long', day: 'numeric' });
@@ -31,7 +32,7 @@ export class CalendarService {
   }
 
   public getCurrentMonthName(): string {
-    return this.currentDate.toLocaleString('ru', { month: 'long' })
+    return this.viewDate.toLocaleString('ru', { month: 'long' })
       .replace(/(^|\s)\S/g, (firstLetter) => firstLetter.toUpperCase());
   }
 
@@ -42,8 +43,8 @@ export class CalendarService {
   public getCurrentMonthWeeks(): Weekday[][] {
     const monthWeekdays: Weekday[][] = [];
 
-    const currentMonth = this.currentDate.getMonth();
-    const date = new Date(this.currentDate);
+    const currentMonth = this.viewDate.getMonth();
+    const date = new Date(this.viewDate);
     date.setDate(1);
 
     while (date.getMonth() === currentMonth) {
@@ -79,7 +80,7 @@ export class CalendarService {
         num: date.getDate(),
         isSelected: date.getDate() === this.currentDate.getDate() && date.getMonth() === this.currentDate.getMonth(),
         isToday: date.getDate() === new Date().getDate() && date.getMonth() === new Date().getMonth(),
-        inCurrentMonth: date.getMonth() === this.currentDate.getMonth(),
+        inCurrentMonth: date.getMonth() === this.viewDate.getMonth(),
         monthNumber: date.getMonth()
       };
       currentWeek.push(weekday);
@@ -92,25 +93,22 @@ export class CalendarService {
     if (this.currentDate.getMonth() === 11 && weekday.monthNumber === 0) return;
     if (this.currentDate.getMonth() === 0 && weekday.monthNumber === 11) return;
     this.currentDate.setFullYear(new Date().getFullYear());
+    this.currentDate.setDate(1);
     this.currentDate.setMonth(weekday.monthNumber);
     this.currentDate.setDate(weekday.num);
   }
 
   public setNextMonth(): void {
-    const currentMonth = this.currentDate.getMonth();
+    const currentMonth = this.viewDate.getMonth();
     if (currentMonth === 11) return;
-    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
-    if (this.currentDate.getMonth() !== currentMonth + 1) {
-      this.currentDate.setMonth(currentMonth + 1);
-    }
+    this.viewDate.setDate(1);
+    this.viewDate.setMonth(this.viewDate.getMonth() + 1);
   }
 
   public setPrevMonth(): void {
-    const currentMonth = this.currentDate.getMonth();
+    const currentMonth = this.viewDate.getMonth();
     if (currentMonth === 0) return;
-    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-    if (this.currentDate.getMonth() !== currentMonth - 1) {
-      this.currentDate.setMonth(currentMonth - 1);
-    }
+    this.viewDate.setDate(1);
+    this.viewDate.setMonth(this.viewDate.getMonth() - 1);
   }
 }

@@ -79,9 +79,9 @@
   border-color: var(--active-color);
 }
 .month-day[selected="true"] {
-  color: var(--text-color);
+  color: white;
   background-color: var(--active-color);
 }
-.month-day[in-other-month="true"] {
+.month-day[in-other-month="true"]:not([selected="true"]) {
   color: #B0B0B0;
 }
