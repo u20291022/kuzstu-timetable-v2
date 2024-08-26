@@ -9,14 +9,14 @@
     <app-search-svg class="search-icon"></app-search-svg>
   </div>
 
-  <div class="medium-font group-and-teacher-search-results" *ngIf="isShowingResults()">
+  <div class="medium-font group-and-teacher-search-results">
     @if (isLoadingResults()) {
       <app-loading></app-loading>
     }
     @else {
       <p
       *ngFor="let result of getResults() | search:getTextToSearch() | alphabetSort; let index as i"
-      (click)="selectResult(result.id)">
+      (click)="selectResult(result)">
         {{result.name}}
       </p>
     }

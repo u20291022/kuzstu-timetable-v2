@@ -4,7 +4,7 @@ import { Lesson } from '../../shared/models/lesson.model';
 import { NgFor, NgIf } from '@angular/common';
 import { LoadingComponent } from "../../shared/components/loading/loading.component";
 import { ImagesService } from '../../core/services/images.service';
-import { LessonsService } from '../../core/services/lessons.service';
+import { TimetableService } from '../../core/services/timetable.service';
 
 @Component({
   selector: 'app-lessons',
@@ -14,10 +14,10 @@ import { LessonsService } from '../../core/services/lessons.service';
   styleUrl: './lessons.component.css'
 })
 export class LessonsComponent {
-  constructor(private imagesService: ImagesService, private lessonsService: LessonsService) {}
+  constructor(private imagesService: ImagesService, private timetableService: TimetableService) {}
 
   public isLoadingLessons(): boolean {
-    return this.lessonsService.isLoadingLessons();
+    return this.timetableService.isLoadingLessons();
   }
 
   public isCatImageLoaded(): boolean {
@@ -25,7 +25,7 @@ export class LessonsComponent {
   }
 
   public getLessons(): Lesson[] {
-    return this.lessonsService.getLessons();
+    return this.timetableService.getLessons();
   }
 
 

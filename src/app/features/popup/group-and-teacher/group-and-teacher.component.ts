@@ -8,6 +8,8 @@ import { AlphabetSortPipe } from "../../../shared/pipes/alphabet-sort.pipe";
 import { TimetableType } from '../../../shared/enums/timetable-type.enum';
 import { LoadingComponent } from "../../../shared/components/loading/loading.component";
 import { PopupService } from '../../../core/services/popup.service';
+import { TimetableService } from '../../../core/services/timetable.service';
+import { SearchType } from '../../../shared/enums/search-type.enum';
 
 @Component({
   selector: 'app-group-and-teacher',
@@ -17,18 +19,14 @@ import { PopupService } from '../../../core/services/popup.service';
   styleUrl: './group-and-teacher.component.css'
 })
 export class GroupAndTeacherComponent {
-  private showingResults = true; // TODO: move to the service
   private loadingResults = false;
   private textToSearch: string = '';
-  private results: GroupOrTeacher[] = [
-    { name: 'ИТб-222', id: '222', type: TimetableType.GROUP },
-    { name: 'ИТб-221', id: '221', type: TimetableType.GROUP },
-  ];
+  private results: GroupOrTeacher[] = [];
 
-  constructor(private popupService: PopupService) {}
-
-  public isShowingResults(): boolean {
-    return this.showingResults;
+  constructor(private popupService: PopupService, private timetableService: TimetableService) {
+    this.timetableService.getMultipleTimetable([SearchType.GROUP, SearchType.TEACHER]).then(timetables => {
+      this.results = timetables.map(timetable => timetable as GroupOrTeacher);
+    });
   }
 
   public isLoadingResults(): boolean {

@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true
 })
 export class SearchPipe implements PipeTransform {
-  transform(items: any[], textToSearch: string): any[] {
+  transform(items: any[] | null, textToSearch: string): any[] {
     if (!items) return [];
     if (!textToSearch) return items;
     textToSearch = this.transformToRussian(textToSearch.toLowerCase());

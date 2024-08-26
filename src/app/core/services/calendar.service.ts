@@ -6,7 +6,7 @@ import { Lesson } from '../../shared/models/lesson.model';
   providedIn: 'root'
 })
 export class CalendarService {
-  private weekdaysShortNames = [ // TODO: move to calendar service
+  private weekdaysShortNames = [
     'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'
   ]
   private currentDate = new Date();

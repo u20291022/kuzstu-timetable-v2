@@ -6,7 +6,7 @@ import { DOCUMENT } from '@angular/common';
   providedIn: 'root'
 })
 export class PopupService {
-  private showingPopop: boolean = false;
+  private showingPopup: boolean = false;
   private popupState: PopupState = PopupState.MENU;
 
   constructor(@Inject(DOCUMENT) private document: Document) {
@@ -25,7 +25,7 @@ export class PopupService {
   }
 
   public isShowingPopup(): boolean {
-    return this.showingPopop;
+    return this.showingPopup;
   }
 
   public isCalendarPopup(): boolean {
@@ -70,10 +70,10 @@ export class PopupService {
   }
 
   public hidePopup(): void {
-    this.showingPopop = false;
+    this.showingPopup = false;
   }
 
   private showPopup(): void {
-    this.showingPopop = true;
+    this.showingPopup = true;
   }
 }

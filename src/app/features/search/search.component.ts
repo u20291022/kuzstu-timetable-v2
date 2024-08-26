@@ -1,45 +1,42 @@
 import {  Component, Inject } from '@angular/core';
 import { StarSvgComponent } from "../../shared/components/star-svg/star-svg.component";
 import { SearchSvgComponent } from "../../shared/components/search-svg/search-svg.component";
-import { DOCUMENT, NgFor, NgIf } from '@angular/common';
-import { SearchResult } from '../../shared/models/search-result.model';
+import { AsyncPipe, DOCUMENT, NgFor, NgIf } from '@angular/common';
+import { Timetable } from '../../shared/models/timetable.model';
 import { TimetableType } from '../../shared/enums/timetable-type.enum';
 import { AlphabetSortPipe } from "../../shared/pipes/alphabet-sort.pipe";
 import { SearchPipe } from '../../shared/pipes/search.pipe';
 import { SearchType } from '../../shared/enums/search-type.enum';
 import { SlicePipe } from "../../shared/pipes/slice.pipe";
 import { LoadingComponent } from "../../shared/components/loading/loading.component";
+import { TimetableService } from '../../core/services/timetable.service';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [NgFor, NgIf, StarSvgComponent, SearchSvgComponent, SearchPipe, AlphabetSortPipe, SlicePipe, LoadingComponent],
+  imports: [NgFor, NgIf, StarSvgComponent, SearchSvgComponent, AsyncPipe,  SearchPipe, AlphabetSortPipe, SlicePipe, LoadingComponent],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
 export class SearchComponent {
   private searchType: SearchType = SearchType.NONE;
   private showingResults = false;
-  private loadingResults = false;
-  private timetableName: string = 'ИТб-222';
-  private placeholder: string = this.timetableName;
+  private placeholder: string;
   private textToSearch: string = '';
+  private results: Timetable[];
 
-  private defaultResults: SearchResult[] = [ 
-    { name: 'Расписание группы', id: '', type: TimetableType.GROUP },
-    { name: 'Расписание преподавателя', id: '', type: TimetableType.TEACHER },
-    { name: 'Расписание аудитории', id: '', type: TimetableType.CLASSROOM },
-  ];
-  private results: SearchResult[] = this.defaultResults;
-
-  constructor(@Inject(DOCUMENT) private document: Document) {
+  constructor(@Inject(DOCUMENT) private document: Document, private timetableService: TimetableService) {
+    this.results = this.timetableService.getDefaultSearchResults();
+    this.placeholder = this.getTimetableName();
     this.document.addEventListener('click', (event) => {
       const searchBox = this.document.getElementsByClassName('search-box')[0];
 
       if (event.target !== searchBox && !searchBox.contains(event.target as Node)) {
         this.clearInput();
-        this.placeholder = this.timetableName;
+        this.placeholder = this.getTimetableName();
+        this.searchType = SearchType.NONE;
         this.showingResults = false;
+        this.results = this.timetableService.getDefaultSearchResults();
       }
     });
   }
@@ -49,8 +46,8 @@ export class SearchComponent {
     this.textToSearch = searchInput.value = '';
   }
 
-  public getSearchType(): SearchType {
-    return this.searchType;
+  public getTimetableName(): string {
+    return this.timetableService.getCurrentTimetableName();
   }
 
   public getPlaceholder(): string {
@@ -61,7 +58,7 @@ export class SearchComponent {
     return this.textToSearch;
   }
 
-  public getResults(): SearchResult[] {
+  public getResults(): Timetable[] {
     return this.results;
   }
 
@@ -70,19 +67,28 @@ export class SearchComponent {
   }
 
   public isLoadingResults(): boolean {
-    return this.loadingResults;
+    return this.timetableService.isLoadingSearchResults();
   }
 
   public isShouldSort(): boolean { 
-    return this.getSearchType() !== SearchType.NONE;
+    return this.searchType !== SearchType.NONE;
   }
 
-  public selectResult(result: SearchResult): void {
+  public selectResult(result: Timetable): void {
     this.placeholder = result.name;
-    if (result.id) {
-      this.timetableName = result.name;
+    this.searchType = result.type.toString() as SearchType;
+    if (result.id !== '') {
+      this.timetableService.fetchLessons();
+      this.timetableService.setTimetableTo(result);
+      this.searchType = SearchType.NONE;
       this.showingResults = false;
+      this.results = this.timetableService.getDefaultSearchResults();
       this.clearInput();
+    }
+    else {
+      this.timetableService.getTimetables(this.searchType).then((timetables) => {
+        this.results = timetables;
+      });
     }
   }
 
