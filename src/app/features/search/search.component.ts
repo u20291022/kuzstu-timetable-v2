@@ -71,7 +71,7 @@ export class SearchComponent {
   }
 
   public isShouldSort(): boolean { 
-    return this.searchType !== SearchType.NONE;
+    return (this.searchType !== SearchType.NONE || this.textToSearch !== '') && this.showingResults;
   }
 
   public selectResult(result: Timetable): void {
@@ -94,6 +94,11 @@ export class SearchComponent {
 
   public onInput(event: Event): void {
     this.textToSearch = (event.target as HTMLInputElement).value;
+    if (this.searchType === SearchType.NONE) {
+      this.timetableService.getMultipleTimetable([SearchType.GROUP, SearchType.TEACHER]).then((timetables) => {
+        this.results = timetables;
+      });
+    }
   }
 
   public onFocus(): void {

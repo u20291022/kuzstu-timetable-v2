@@ -17,7 +17,7 @@
       <p
       *ngFor="let result of getResults() | search:getTextToSearch() | alphabetSort; let index as i"
       (click)="selectResult(result)">
-        {{result.name}}
+        {{result.name | slice:0:20}}
       </p>
     }
   </div>

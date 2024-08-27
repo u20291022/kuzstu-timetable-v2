@@ -4,6 +4,7 @@ import { Lesson } from '../../shared/models/lesson.model';
 import { Timetable } from '../../shared/models/timetable.model';
 import { TimetableType } from '../../shared/enums/timetable-type.enum';
 import { SearchType } from '../../shared/enums/search-type.enum';
+import { settings } from '../../shared/settings';
 
 @Injectable({
   providedIn: 'root'
@@ -13,30 +14,10 @@ export class TimetableService {
   private loadingSearchResults = false;
   private currentTimetable: Timetable = {
     name: 'ИТб-222',
-    id: '1',
+    id: '6479',
     type: TimetableType.GROUP
   };
-  private lessons: Lesson[] = [
-    {
-      "date": {"day": 1, "monthIndex": 8},
-      "lessonNumber": "1",
-      "lessonTime": {"start": "9:00", "end": "10:30"},
-      "subgroups": [
-        {
-          "name": "1 п/г",
-          "lessonName": "лаб. Теория автоматического управления",
-          "teacher": "Симикова А.А.",
-          "classroom": "Ауд. 3305"
-        },
-        {
-          "name": "2 п/г",
-          "lessonName": "лаб. Теория информационных процессов и систем",
-          "teacher": "Николаев П.И.",
-          "classroom": "Ауд. 3302"
-        }
-      ]
-    },
-  ];
+  private lessons: Lesson[] = [];
   private defaultSearchResults: Timetable[] = [ 
     { name: 'Расписание группы', id: '', type: TimetableType.GROUP },
     { name: 'Расписание преподавателя', id: '', type: TimetableType.TEACHER },
@@ -58,9 +39,43 @@ export class TimetableService {
 
   public async fetchLessons(): Promise<void> {
     this.loadingLessons = true;
-    setTimeout(() => {
-      this.loadingLessons = false;
-    }, 2000);
+    
+    this.lessons = await new Promise((resolve) => {
+      const currentTimetableType = this.currentTimetable.type;
+      const currentTimetableId = this.currentTimetable.id;
+      switch (currentTimetableType) {
+        case TimetableType.GROUP: {
+          fetch(`${settings.baseUrl}/timetable/getGroupSchedule/${currentTimetableId}`).then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Failed to fetch group timetables');
+            }
+          }).then(data => {
+            resolve(data)
+          });
+          break;
+        }
+        case TimetableType.TEACHER: {
+          fetch(`${settings.baseUrl}/timetable/getTeacherSchedule/${currentTimetableId}`).then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Failed to fetch teacher timetables');
+            }
+          }).then(data => {
+            resolve(data)
+          });
+          break;
+        }
+        default: {
+          resolve([]);
+          break;
+        }
+      }
+    });
+
+    this.loadingLessons = false;
   }
 
   public async getMultipleTimetable(searchTypes: SearchType[]): Promise<Timetable[]> {
@@ -90,16 +105,17 @@ export class TimetableService {
   }
 
   private async fetchTimetables(timetableType: TimetableType): Promise<Timetable[]> {
-    if (timetableType === TimetableType.GROUP) {
-      return [
-        { name: 'ИТб-222', id: '222', type: TimetableType.GROUP },
-        { name: 'ИТб-221', id: '221', type: TimetableType.GROUP },
-      ];
-    }
-
-    return [
-      { name: "test", id: "123", type: TimetableType.GROUP },
-    ];
+    return new Promise((resolve) => {
+      fetch(`${settings.baseUrl}/timetable/${timetableType}`).then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Failed to fetch timetables');
+        }
+      }).then(data => {
+        resolve(data)
+      });
+    });
   }
 
   public isLoadingLessons(): boolean {

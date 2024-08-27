@@ -10,11 +10,12 @@ import { LoadingComponent } from "../../../shared/components/loading/loading.com
 import { PopupService } from '../../../core/services/popup.service';
 import { TimetableService } from '../../../core/services/timetable.service';
 import { SearchType } from '../../../shared/enums/search-type.enum';
+import { SlicePipe } from "../../../shared/pipes/slice.pipe";
 
 @Component({
   selector: 'app-group-and-teacher',
   standalone: true,
-  imports: [SearchPipe, NgFor, NgIf, GroupSvgComponent, SearchSvgComponent, AlphabetSortPipe, LoadingComponent],
+  imports: [SearchPipe, NgFor, NgIf, GroupSvgComponent, SearchSvgComponent, AlphabetSortPipe, LoadingComponent, SlicePipe],
   templateUrl: './group-and-teacher.component.html',
   styleUrl: './group-and-teacher.component.css'
 })
@@ -24,8 +25,10 @@ export class GroupAndTeacherComponent {
   private results: GroupOrTeacher[] = [];
 
   constructor(private popupService: PopupService, private timetableService: TimetableService) {
+    this.loadingResults = true;
     this.timetableService.getMultipleTimetable([SearchType.GROUP, SearchType.TEACHER]).then(timetables => {
       this.results = timetables.map(timetable => timetable as GroupOrTeacher);
+      this.loadingResults = false;
     });
   }
 
