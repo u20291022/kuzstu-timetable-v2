@@ -17,15 +17,7 @@ import { LessonsComponent } from "./features/lessons/lessons.component";
     <app-weekdays></app-weekdays>
     <app-lessons></app-lessons>
   `,
-  styles: `
-    app-lessons {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 3;
-      overflow-y: scroll;
-      scrollbar-color: var(--accent-color) var(--background-color);
-    }
-  `,
+  styles: ``
 })
 export class AppComponent {
   constructor(private themeService: ThemeService) {}

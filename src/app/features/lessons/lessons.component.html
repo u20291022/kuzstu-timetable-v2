@@ -9,7 +9,7 @@
       }
       @else {
         <section class="free-day-block">
-          <img [class.hidden]="!isCatImageLoaded()" loading="lazy" class="big-font free-day-image"
+          <img [class.hidden]="!isCatImageLoaded()" class="big-font free-day-image"
           (load)="onCatImageLoad()" [src]="getCurrentCatImageUrl()" alt="Здесь должен быть котик" />
           <app-loading *ngIf="!isCatImageLoaded()"></app-loading>
           <p class="free-day-text">Занятий нет</p>
