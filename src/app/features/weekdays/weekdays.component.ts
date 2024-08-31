@@ -2,11 +2,12 @@ import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { Weekday } from '../../shared/models/weekday.model';
 import { CalendarService } from '../../core/services/calendar.service';
+import { ChevronSvgComponent } from "../../shared/components/chevron-svg/chevron-svg.component";
 
 @Component({
   selector: 'app-weekdays',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, ChevronSvgComponent],
   templateUrl: './weekdays.component.html',
   styleUrl: './weekdays.component.css'
 })

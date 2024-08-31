@@ -41,6 +41,7 @@
   justify-content: center;
   gap: 15px;
   padding: 13px 6px;
+  padding-right: 8px;
   margin: 0 12px 0 11px;
   border-radius: 10px;
   background: var(--accent-color);

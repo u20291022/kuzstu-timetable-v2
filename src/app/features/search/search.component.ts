@@ -78,8 +78,8 @@ export class SearchComponent {
     this.placeholder = result.name;
     this.searchType = result.type.toString() as SearchType;
     if (result.id !== '') {
-      this.timetableService.fetchLessons();
       this.timetableService.setTimetableTo(result);
+      this.timetableService.fetchLessons();
       this.searchType = SearchType.NONE;
       this.showingResults = false;
       this.results = this.timetableService.getDefaultSearchResults();

@@ -1,3 +1,3 @@
 export const settings = {
-  baseUrl: "http://localhost:2053"
+  baseUrl: "https://u20291022.info:2053"
 };

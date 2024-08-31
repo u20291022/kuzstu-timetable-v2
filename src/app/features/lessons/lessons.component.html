@@ -1,18 +1,20 @@
-<section class="lessons" *ngIf="getLessons() as lessons">
-  @if (isLoadingLessons()) {
-    <app-loading></app-loading>
-  }
-  @else {
-    @if (lessons.length > 0) {
-      <app-lesson *ngFor="let lesson of lessons; let index as i" [lesson]="lesson"></app-lesson>
+<section class="lessons-block">
+  <section class="lessons" *ngIf="getLessons() as lessons">
+    @if (isLoadingLessons()) {
+      <app-loading></app-loading>
     }
     @else {
-      <section class="free-day-block">
-        <img [class.hidden]="!isCatImageLoaded()" loading="lazy" class="big-font free-day-image"
-        (load)="onCatImageLoad()" [src]="getCurrentCatImageUrl()" alt="Здесь должен быть котик" />
-        <app-loading *ngIf="!isCatImageLoaded()"></app-loading>
-        <p class="free-day-text">Занятий нет</p>
-      </section>
+      @if (lessons.length > 0) {
+        <app-lesson *ngFor="let lesson of lessons; let index as i" [lesson]="lesson"></app-lesson>
+      }
+      @else {
+        <section class="free-day-block">
+          <img [class.hidden]="!isCatImageLoaded()" loading="lazy" class="big-font free-day-image"
+          (load)="onCatImageLoad()" [src]="getCurrentCatImageUrl()" alt="Здесь должен быть котик" />
+          <app-loading *ngIf="!isCatImageLoaded()"></app-loading>
+          <p class="free-day-text">Занятий нет</p>
+        </section>
+      }
     }
-  }
+  </section>
 </section>
