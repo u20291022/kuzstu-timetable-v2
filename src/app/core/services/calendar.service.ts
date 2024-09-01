@@ -90,8 +90,8 @@ export class CalendarService {
   }
 
   public setCurrentWeekdayTo(weekday: Weekday): void {
-    if (this.currentDate.getMonth() === 11 && weekday.monthNumber === 0) return;
-    if (this.currentDate.getMonth() === 0 && weekday.monthNumber === 11) return;
+    if (this.viewDate.getMonth() === 11 && weekday.monthNumber === 0) return;
+    if (this.viewDate.getMonth() === 0 && weekday.monthNumber === 11) return;
     this.currentDate.setFullYear(new Date().getFullYear());
     this.currentDate.setDate(1);
     this.currentDate.setMonth(weekday.monthNumber);
@@ -110,5 +110,39 @@ export class CalendarService {
     if (currentMonth === 0) return;
     this.viewDate.setDate(1);
     this.viewDate.setMonth(this.viewDate.getMonth() - 1);
+  }
+
+  public setNextWeek(): void {
+    const currentDay = (this.currentDate.getDay() || 7) - 1;
+    const newDate = this.currentDate.getDate() + (7 - currentDay);
+    if (this.currentDate.getMonth() !== 11 || newDate <= 31) {
+      this.currentDate.setDate(newDate);
+      this.viewDate.setDate(newDate);
+    }
+  }
+
+  public setPrevWeek(): void {
+    const currentDay = (this.currentDate.getDay() || 7) - 1;
+    const newDate = this.currentDate.getDate() - (7 + currentDay);
+    if (this.currentDate.getMonth() !== 0 || newDate >= 1) {
+      this.currentDate.setDate(newDate);
+      this.viewDate.setDate(newDate);
+    }
+  }
+
+  public setNextDay(): void {
+    const newDate = this.currentDate.getDate() + 1;
+    if (this.currentDate.getMonth() !== 11 || newDate <= 31) {
+      this.currentDate.setDate(newDate);
+      this.viewDate.setDate(newDate);
+    }
+  }
+
+  public setPrevDay(): void {
+    const newDate = this.currentDate.getDate() - 1;
+    if (this.currentDate.getMonth() !== 0 || newDate >= 1) {
+      this.currentDate.setDate(newDate);
+      this.viewDate.setDate(newDate);
+    }
   }
 }

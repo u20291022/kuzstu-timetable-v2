@@ -1,5 +1,7 @@
 <section class="lessons-block">
-  <section class="lessons" *ngIf="getLessons() as lessons">
+  <section class="lessons" *ngIf="getLessons() as lessons"
+  (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd()"
+  >
     @if (isLoadingLessons()) {
       <app-loading></app-loading>
     }
@@ -17,4 +19,4 @@
       }
     }
   </section>
-</section>
+  </section>

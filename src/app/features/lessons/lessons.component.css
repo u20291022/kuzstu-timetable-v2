@@ -3,15 +3,18 @@
   justify-content: center;
   width: 100%;
   height: calc(100svh - 71px - 41px - 53px);
+  overflow-x: hidden;
 }
 
 .lessons {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
   max-width: 500px;
   max-height: 100%;
+  overflow-x: hidden;
   overflow-y: scroll;
   scrollbar-color: var(--accent-color) var(--background-color);
 }

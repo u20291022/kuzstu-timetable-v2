@@ -1,10 +1,18 @@
+.weekdays-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 12px;
+  user-select: none;
+  overflow: hidden;
+}
+
 .weekdays {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
-  user-select: none;
 }
 
 .weekday {
@@ -30,4 +38,21 @@
   border: 1px solid var(--active-color);
   color: var(--background-color);
   background-color: var(--active-color);
+}
+
+.arrow {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  padding: 1px;
+  border-radius: 50%;
+}
+.left-arrow {
+  left: -5px;
+}
+.right-arrow {
+  right: -5px;
+  transform: rotate(180deg);
 }

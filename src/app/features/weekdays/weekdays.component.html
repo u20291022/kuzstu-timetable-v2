@@ -1,10 +1,18 @@
-<section class="weekdays">
-  @for (weekday of getWeekdays(); track $index) {
-    <div class="weekday medium-font"
-    [attr.selected]="weekday.isSelected" [attr.today]="weekday.isToday"
-    (click)="setCurrentWeekdayTo(weekday)">
-      <p>{{weekday.num}}</p>
-      <p>{{getWeekdayShortName($index)}}</p>
-    </div>
-  }
+<section class="weekdays-container">
+  <section class="weekdays"
+  (touchstart)="onTouchStart($event)" (touchmove)="onTouchMove($event)" (touchend)="onTouchEnd()"
+  >
+    <app-chevron-svg class="arrow left-arrow"></app-chevron-svg>
+    
+    @for (weekday of getWeekdays(); track $index) {
+      <div class="weekday medium-font"
+      [attr.selected]="weekday.isSelected" [attr.today]="weekday.isToday"
+      (click)="setCurrentWeekdayTo(weekday)">
+        <p>{{weekday.num}}</p>
+        <p>{{getWeekdayShortName($index)}}</p>
+      </div>
+    }
+
+    <app-chevron-svg class="arrow right-arrow"></app-chevron-svg>
+  </section>
 </section>

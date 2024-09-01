@@ -11,17 +11,24 @@ export class PopupService {
 
   constructor(@Inject(DOCUMENT) private document: Document) {
     this.document.addEventListener('click', (event) => {
-      const targetElement = event.target as HTMLElement;
-      const popupElement = this.document.getElementsByClassName('popup')[0];
-      const headerButtons = this.document.getElementsByClassName('header-button');
-
-      if (popupElement
-        && !popupElement.contains(targetElement)
-        && !headerButtons[0].contains(targetElement)
-        && !headerButtons[1].contains(targetElement)) {
-        this.hidePopup();
-      }
+      this.onClickAndTouchEvent(event);
     });
+    this.document.addEventListener('touchend', (event) => {
+      this.onClickAndTouchEvent(event);
+    });
+  }
+
+  private onClickAndTouchEvent(event: Event): void {
+    const targetElement = event.target as HTMLElement;
+    const popupElement = this.document.getElementsByClassName('popup')[0];
+    const headerButtons = this.document.getElementsByClassName('header-button');
+
+    if (popupElement
+      && !popupElement.contains(targetElement)
+      && !headerButtons[0].contains(targetElement)
+      && !headerButtons[1].contains(targetElement)) {
+      this.hidePopup();
+    }
   }
 
   public isShowingPopup(): boolean {
