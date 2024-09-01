@@ -21,7 +21,7 @@ export class TimetableService {
   private defaultSearchResults: Timetable[] = [ 
     { name: 'Расписание группы', id: '', type: TimetableType.GROUP },
     { name: 'Расписание преподавателя', id: '', type: TimetableType.TEACHER },
-    { name: 'Расписание аудитории', id: '', type: TimetableType.CLASSROOM },
+    // { name: 'Расписание аудитории', id: '', type: TimetableType.CLASSROOM },
   ];
   private timetables: { [key in TimetableType]: Timetable[] } = {
     [TimetableType.GROUP]: [],
